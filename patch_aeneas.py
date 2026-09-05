@@ -4,6 +4,7 @@ import sys
 import re
 from pathlib import Path
 
+
 def apply_patches(patches, path):
     encoding = 'utf-8'
     s = path.read_text(encoding=encoding)
@@ -11,8 +12,10 @@ def apply_patches(patches, path):
         s = patch(s)
     path.write_text(s, encoding=encoding)
 
+
 def mk_find(pattern, replacement):
     return lambda s: s.replace(pattern, replacement)
+
 
 def mk_regex(pattern, replacement):
     return lambda s: re.sub(pattern, replacement, s)
@@ -155,6 +158,7 @@ def main():
     root = Path(sys.argv[1])
     for f in FILES:
         apply_patches(PATCHES, root / f)
+
 
 if __name__ == '__main__':
     main()
