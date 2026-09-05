@@ -44,7 +44,7 @@ set_option linter.unusedVariables false
 
 open Aeneas Aeneas.Std Result ControlFlow Error
 """,
-      ),
+    ),
     # https://github.com/AeneasVerif/aeneas/issues/1043
     mk_regex(
         r"\n  map := fun[\s\S]*?(?=\n  enumerate)",
