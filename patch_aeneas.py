@@ -3,14 +3,23 @@
 import re
 from pathlib import Path
 
-ROOT = Path('foo/SrcTranslated')
-FILES = ['Types.lean', 'Funs.lean']
+def apply_patches(patches, path):
+    encoding = 'utf-8'
+    s = path.read_text(encoding=encoding)
+    for patch in patches:
+        s = patch(s)
+    path.write_text(s, encoding=encoding)
 
 def mk_find(pattern, replacement):
     return lambda s: s.replace(pattern, replacement)
 
 def mk_regex(pattern, replacement):
     return lambda s: re.sub(pattern, replacement, s)
+
+
+ROOT = Path('foo/SrcTranslated')
+
+FILES = ['Types.lean', 'Funs.lean']
 
 PATCHES = [
     # Disable linters for the auto-generated files.
@@ -142,20 +151,10 @@ open Aeneas Aeneas.Std Result ControlFlow Error
     ),
 ]
 
-def patch(s):
-    for f in PATCHES:
-        s = f(s)
-    return s
 
-
-def run():
-    encoding = 'utf-8'
+def main():
     for f in FILES:
-        p = ROOT / f
-        s = p.read_text(encoding=encoding)
-        s = patch(s)
-        p.write_text(s, encoding=encoding)
-
+        apply_patches(PATCHES, ROOT / f)
 
 if __name__ == '__main__':
-    run()
+    main()
