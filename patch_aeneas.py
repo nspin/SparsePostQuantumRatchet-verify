@@ -101,7 +101,8 @@ open Aeneas Aeneas.Std Result ControlFlow Error
                     match val3.key with""",
     ),
     mk_find(
-        "chain.Chain.into_pb chain\n", "chain.Chain.into_pb chain' /- #101 rename -/\n"
+        "chain.Chain.into_pb chain\n",
+        "chain.Chain.into_pb chain' /- #101 rename -/\n",
     ),
     mk_find(
         "chain.Chain.recv_key chain msg_key_epoch index",
