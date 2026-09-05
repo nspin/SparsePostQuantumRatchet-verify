@@ -87,6 +87,11 @@ PATCHES = [
             '\\g<1> (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ \\g<2>'),
 ]
 
+def mk_find(pattern, replacement):
+  return lambda s: s.replace(pattern, replacement)
+
+def mk_regex(pattern, replacement):
+  return lambda s: re.sub(pattern, replacement, s)
 
 def patch(s):
     """Apply every patch in PATCHES, in order, returning the patched string."""
