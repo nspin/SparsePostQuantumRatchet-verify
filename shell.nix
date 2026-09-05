@@ -1,5 +1,5 @@
 let
-  pkgs = import ../../../cfg/nixpkgs {};
+  pkgs = import <nixpkgs> {};
 in
 with pkgs;
 mkShell {
