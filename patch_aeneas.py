@@ -21,6 +21,12 @@ FILES = ['Types.lean', 'Funs.lean']
 LITERAL = 'literal'
 REGEX = 'regex'
 
+def mk_find(pattern, replacement):
+  return lambda s: s.replace(pattern, replacement)
+
+def mk_regex(pattern, replacement):
+  return lambda s: re.sub(pattern, replacement, s)
+
 PATCHES = [
     # Disable linters for the auto-generated files.
     (LITERAL, 'open Aeneas Aeneas.Std Result ControlFlow Error\nset_option linter.dupNamespace false\nset_option linter.hashCommand false\nset_option linter.unusedVariables false\n',
@@ -86,12 +92,6 @@ PATCHES = [
     (REGEX, '(\\| core\\.ops\\.control_flow\\.ControlFlow\\.Continue) val4 (=>\\n\\s+let \\S+ ← encoding\\.polynomial\\.PolyDecoder\\.from_pb val4)',
             '\\g<1> (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ \\g<2>'),
 ]
-
-def mk_find(pattern, replacement):
-  return lambda s: s.replace(pattern, replacement)
-
-def mk_regex(pattern, replacement):
-  return lambda s: re.sub(pattern, replacement, s)
 
 def patch(s):
     """Apply every patch in PATCHES, in order, returning the patched string."""
