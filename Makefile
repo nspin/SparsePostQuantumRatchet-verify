@@ -33,4 +33,4 @@ upstream_rev := f2589fef855c10f39d72634dab3d14654dd410bf
 .PHONY: diff
 diff:
 	git fetch $(upstream_url) $(upstream_rev)
-	git diff $(upstream_rev) -u -- src
+	git diff $(upstream_rev) -- src
