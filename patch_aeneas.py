@@ -14,13 +14,14 @@ def mk_regex(pattern, replacement):
 
 PATCHES = [
     # Disable linters for the auto-generated files.
-    mk_find("""\
+    mk_find(
+        """\
 open Aeneas Aeneas.Std Result ControlFlow Error
 set_option linter.dupNamespace false
 set_option linter.hashCommand false
 set_option linter.unusedVariables false
 """,
-              """\
+        """\
 set_option linter.style.headerAlt false
 set_option linter.style.header false
 set_option linter.style.longLine false
@@ -31,11 +32,14 @@ set_option linter.hashCommand false
 set_option linter.unusedVariables false
 
 open Aeneas Aeneas.Std Result ControlFlow Error
-"""),
+"""
+    ),
 
     # https://github.com/AeneasVerif/aeneas/issues/1043
-    mk_regex(r'\n  map := fun[\s\S]*?(?=\n  enumerate)',
-            '\n  -- See https://github.com/AeneasVerif/aeneas/issues/1043'),
+    mk_regex(
+        r'\n  map := fun[\s\S]*?(?=\n  enumerate)',
+        '\n  -- See https://github.com/AeneasVerif/aeneas/issues/1043'
+    ),
     mk_regex(r'\n  collect := fun[\s\S]*?(?=\n\})',
             '\n  -- See https://github.com/AeneasVerif/aeneas/issues/1043'),
 
