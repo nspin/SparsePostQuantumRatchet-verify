@@ -1,6 +1,7 @@
 crate_name := spqr
 
 dest := foo
+subdir := SrcTranslated
 
 translation := $(dest)/translation.json
 
@@ -21,11 +22,15 @@ $(translation): $(crate_name).llbc
 		-split-files \
 		-emit-json \
 		-dest $(dest) \
-		-subdir SrcTranslated \
+		-subdir $(subdir) \
 		$<
 
 .PHONY: aeneas
 aeneas: $(translation)
+
+.PHONY: patch
+patch:
+	patch_aeneas.py $(dest)/$(subdir)
 
 upstream_url := https://github.com/signalapp/SparsePostQuantumRatchet.git
 upstream_rev := f2589fef855c10f39d72634dab3d14654dd410bf
