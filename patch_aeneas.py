@@ -102,7 +102,9 @@ def run():
     encoding = 'utf-8'
     for f in FILES:
         p = ROOT / f
-        p.write_text(patch(p.read_text(encoding=encoding)), encoding=encoding)
+        s = p.read_text(encoding=encoding)
+        s = patch(s)
+        p.write_text(s, encoding=encoding)
 
 
 if __name__ == '__main__':
