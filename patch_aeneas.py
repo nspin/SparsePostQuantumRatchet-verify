@@ -1,21 +1,4 @@
 #!/usr/bin/env python3
-"""Apply post-extraction tweaks to the generated Lean files.
-
-The patches below are hardcoded copies of `tweaks.substitutions` in
-aeneas-config.yml (that YAML stays the human-readable source of truth; this
-script does not parse it). Each entry is applied in order to every file:
-
-    (LITERAL, find, replace)   -> str.replace(find, replace)
-    (REGEX,   pattern, repl)   -> re.sub(pattern, repl, ...)   ($1 -> \\g<1>)
-
-A patch that doesn't match a given file is a no-op -- many are specific to
-either Types.lean or Funs.lean.
-
-Regex patterns/replacements use raw strings (r'...') so backslashes read as
-they do in a regex. Multi-line find/replace text uses triple-quoted strings so
-the matched Lean source is visible line-for-line; leading whitespace on
-continuation lines is significant and must match the generated file exactly.
-"""
 
 import re
 from pathlib import Path
@@ -23,14 +6,11 @@ from pathlib import Path
 ROOT = Path('foo/SrcTranslated')
 FILES = ['Types.lean', 'Funs.lean']
 
-LITERAL = 'literal'
-REGEX = 'regex'
-
 def mk_find(pattern, replacement):
-  return lambda s: s.replace(pattern, replacement)
+    return lambda s: s.replace(pattern, replacement)
 
 def mk_regex(pattern, replacement):
-  return lambda s: re.sub(pattern, replacement, s)
+    return lambda s: re.sub(pattern, replacement, s)
 
 PATCHES = [
     # Disable linters for the auto-generated files.
@@ -125,12 +105,8 @@ open Aeneas Aeneas.Std Result ControlFlow Error
 ]
 
 def patch(s):
-    """Apply every patch in PATCHES, in order, returning the patched string."""
-    for kind, pattern, replace in PATCHES:
-        if kind == REGEX:
-            s = re.sub(pattern, replace, s)
-        else:
-            s = s.replace(pattern, replace)
+    for f in PATCHES:
+        s = f(s)
     return s
 
 
