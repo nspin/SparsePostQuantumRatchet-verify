@@ -1,23 +1,28 @@
 crate_name := spqr
-llbc := $(crate_name).llbc
+
+dest := foo
+
+translation := $(dest)/translation.json
 
 .PHONY: none
 none:
 
-.PHONY: $(llbc)
-$(llbc):
+.PHONY: charon
+charon:
 	charon cargo \
 		--preset=aeneas \
 		--hide-marker-traits \
 		-- \
 		--features extraction
 
-.PHONY: aeneas
-aeneas: $(llbc)
+$(translation): $(crate_name).llbc
 	aeneas \
 		-backend lean \
 		-split-files \
-    -emit-json \
-  	-dest foo \
+		-emit-json \
+		-dest $(dest) \
 		-subdir SrcTranslated \
-  	$<
+		$<
+
+.PHONY: aeneas
+aeneas: $(translation)
