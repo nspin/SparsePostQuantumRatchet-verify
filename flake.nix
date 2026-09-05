@@ -14,7 +14,15 @@
         aeneas = inputs.aeneas.packages.${system}.aeneas;
       in {
         devShells.default = pkgs.mkShell {
-          packages = [ pkgs.python3 pkgs.protobuf pkgs.elan charon aeneas ];
+          packages = [
+            pkgs.python3
+            pkgs.black
+            pkgs.nixfmt
+            pkgs.protobuf
+            pkgs.elan
+            charon
+            aeneas
+          ];
         };
       });
 }
