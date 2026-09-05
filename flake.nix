@@ -3,7 +3,7 @@
     nixpkgs.follows = "aeneas/nixpkgs";
     flake-utils.follows = "aeneas/flake-utils";
     charon.follows = "aeneas/charon";
-    aeneas.url = "github:AeneasVerif/aeneas";
+    aeneas.url = "github:AeneasVerif/aeneas/nightly-2026.08.27-5b9dcf3";
   };
 
   outputs = inputs @ { self, nixpkgs, flake-utils, charon, aeneas, ... }:
