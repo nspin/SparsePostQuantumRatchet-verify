@@ -17,8 +17,6 @@ def mk_regex(pattern, replacement):
     return lambda s: re.sub(pattern, replacement, s)
 
 
-ROOT = Path('foo/SrcTranslated')
-
 FILES = ['Types.lean', 'Funs.lean']
 
 PATCHES = [
@@ -153,8 +151,9 @@ open Aeneas Aeneas.Std Result ControlFlow Error
 
 
 def main():
+    root = sys.argv[1]
     for f in FILES:
-        apply_patches(PATCHES, ROOT / f)
+        apply_patches(PATCHES, root / f)
 
 if __name__ == '__main__':
     main()
