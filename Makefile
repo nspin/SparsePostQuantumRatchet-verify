@@ -30,7 +30,7 @@ aeneas: $(translation)
 
 .PHONY: patch
 patch:
-	patch_aeneas.py $(dest)/$(subdir)
+	./patch_aeneas.py $(dest)/$(subdir)
 
 upstream_url := https://github.com/signalapp/SparsePostQuantumRatchet.git
 upstream_rev := f2589fef855c10f39d72634dab3d14654dd410bf

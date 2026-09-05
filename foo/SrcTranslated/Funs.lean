@@ -3,10 +3,16 @@
 import Aeneas
 import SrcTranslated.Types
 import SrcTranslated.FunsExternal
-open Aeneas Aeneas.Std Result ControlFlow Error
+set_option linter.style.headerAlt false
+set_option linter.style.header false
+set_option linter.style.longLine false
+set_option linter.style.setOption false
+set_option linter.style.whitespace false
 set_option linter.dupNamespace false
 set_option linter.hashCommand false
 set_option linter.unusedVariables false
+
+open Aeneas Aeneas.Std Result ControlFlow Error
 
 /- You can set the `maxHeartbeats` value with the `-max-heartbeats` CLI option -/
 set_option maxHeartbeats 1000000
@@ -63,26 +69,15 @@ impl_def core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator {B :
   (opsfunctionFnMutFTupleClause0_ItemBInst : core.ops.function.FnMut F
   Clause0_Item B) : core.iter.traits.iterator.Iterator
   (core.iter.adapters.map.Map I F) B := {
-  next := core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator.next
-    traitsiteratorIteratorInst opsfunctionFnMutFTupleClause0_ItemBInst
+  next := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1043
   step_by := core.iter.traits.iterator.Iterator.step_by.trait_default
     (core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator
     traitsiteratorIteratorInst opsfunctionFnMutFTupleClause0_ItemBInst)
-  map := fun {B1 : Type} {F1 : Type} (opsfunctionFnMutPTupleBPInst :
-    core.ops.function.FnMut F1 B B1) =>
-    core.iter.traits.iterator.Iterator.map.default
-    (core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator
-    traitsiteratorIteratorInst opsfunctionFnMutFTupleClause0_ItemBInst)
-    opsfunctionFnMutPTupleBPInst
+  -- See https://github.com/AeneasVerif/aeneas/issues/1043
   enumerate := core.iter.traits.iterator.Iterator.enumerate.trait_default
     (core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator
     traitsiteratorIteratorInst opsfunctionFnMutFTupleClause0_ItemBInst)
-  collect := fun {B1 : Type} (collectFromIteratorInst :
-    core.iter.traits.collect.FromIterator B1 B) =>
-    core.iter.traits.iterator.Iterator.collect.default
-    (core.iter.adapters.map.Map.Insts.CoreIterTraitsIteratorIterator
-    traitsiteratorIteratorInst opsfunctionFnMutFTupleClause0_ItemBInst)
-    collectFromIteratorInst
+  -- See https://github.com/AeneasVerif/aeneas/issues/1043
 }
 
 /-- Trait implementation: [core::ops::range::{impl core::ops::range::RangeBounds<T> for core::ops::range::RangeFrom<T>}]
@@ -150,19 +145,11 @@ impl_def
   step_by := core.iter.traits.iterator.Iterator.step_by.trait_default
     (alloc.collections.vec_deque.into_iter.IntoIter.Insts.CoreIterTraitsIteratorIterator
     T A)
-  map := fun {B : Type} {F : Type} (opsfunctionFnMutPTupleBPInst :
-    core.ops.function.FnMut F T B) =>
-    core.iter.traits.iterator.Iterator.map.default
-    (alloc.collections.vec_deque.into_iter.IntoIter.Insts.CoreIterTraitsIteratorIterator
-    T A) opsfunctionFnMutPTupleBPInst
+  -- See https://github.com/AeneasVerif/aeneas/issues/1043
   enumerate := core.iter.traits.iterator.Iterator.enumerate.trait_default
     (alloc.collections.vec_deque.into_iter.IntoIter.Insts.CoreIterTraitsIteratorIterator
     T A)
-  collect := fun {B : Type} (collectFromIteratorInst :
-    core.iter.traits.collect.FromIterator B T) =>
-    core.iter.traits.iterator.Iterator.collect.default
-    (alloc.collections.vec_deque.into_iter.IntoIter.Insts.CoreIterTraitsIteratorIterator
-    T A) collectFromIteratorInst
+  -- See https://github.com/AeneasVerif/aeneas/issues/1043
 }
 
 /-- Trait implementation: [alloc::collections::vec_deque::{impl core::iter::traits::collect::FromIterator<T> for alloc::collections::vec_deque::VecDeque<T, alloc::alloc::Global>}]
@@ -308,28 +295,8 @@ def proto.pq_ratchet.PolynomialEncoder.Insts.CoreCmpEq : core.cmp.Eq
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::PolynomialEncoder}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 2:37-2:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.PolynomialEncoder := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultPolynomialEncoderInst :
-    core.default.Default proto.pq_ratchet.PolynomialEncoder)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage
-    coredefaultDefaultPolynomialEncoderInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.PolynomialEncoder.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.PolynomialEncoder := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::PolynomialEncoder}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 2:37-2:53
@@ -434,28 +401,8 @@ def proto.pq_ratchet.PolynomialDecoder.Insts.CoreCmpEq : core.cmp.Eq
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::PolynomialDecoder}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 14:37-14:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.PolynomialDecoder := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultPolynomialDecoderInst :
-    core.default.Default proto.pq_ratchet.PolynomialDecoder)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage
-    coredefaultDefaultPolynomialDecoderInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.PolynomialDecoder.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.PolynomialDecoder := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::PolynomialDecoder}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 14:37-14:53
@@ -2277,28 +2224,8 @@ def proto.pq_ratchet.PqRatchetState.Insts.CoreCmpPartialEqPqRatchetState :
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::PqRatchetState}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 25:27-25:43 -/
 @[reducible]
-impl_def proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.PqRatchetState := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultPqRatchetStateInst :
-    core.default.Default proto.pq_ratchet.PqRatchetState)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage
-    coredefaultDefaultPqRatchetStateInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.PqRatchetState := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::PqRatchetState}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 25:27-25:43
@@ -2326,31 +2253,10 @@ def proto.pq_ratchet.PqRatchetState.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::pq_ratchet_state::{impl prost::message::Message for spqr::proto::pq_ratchet::pq_ratchet_state::VersionNegotiation}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 38:41-38:57 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.pq_ratchet_state.VersionNegotiation
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultVersionNegotiationInst :
-    core.default.Default proto.pq_ratchet.pq_ratchet_state.VersionNegotiation)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage
-    coredefaultDefaultVersionNegotiationInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.pq_ratchet_state.VersionNegotiation.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::Direction}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 402:67-402:87
@@ -2492,34 +2398,14 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.pq_ratchet_state.Inner.merge.closure T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.pq_ratchet_state.Inner.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::V1State}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 98:37-98:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.V1State.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.V1State := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.V1State.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.V1State.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len := proto.pq_ratchet.V1State.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.V1State.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultV1StateInst :
-    core.default.Default proto.pq_ratchet.V1State) (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.V1State.Insts.ProstMessageMessage
-    coredefaultDefaultV1StateInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.V1State.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.V1State.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.V1State := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::pq_ratchet_state::{spqr::proto::pq_ratchet::pq_ratchet_state::Inner}::encode]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 49:41-49:55
@@ -2554,46 +2440,7 @@ def proto.pq_ratchet.pq_ratchet_state.Inner.merge
   (ctx : prost.encoding.DecodeContext) :
   Result ((core.result.Result Unit prost.error.DecodeError) × (Option
     proto.pq_ratchet.pq_ratchet_state.Inner) × T0)
-  := do
-  match tag with
-  | 3#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.V1State.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.V1State.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.pq_ratchet_state.Inner.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some i =>
-      let ⟨ value ⟩ := i
-      let (r, value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.V1State.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type value buf ctx
-      ok (r, some (proto.pq_ratchet.pq_ratchet_state.Inner.V1 value1), buf1)
-  | _ =>
-    let a ← core.fmt.rt.Argument.new_display U32.Insts.CoreFmtDisplay tag
-    let _ ←
-      core.fmt.Arguments.new
-        (Array.make 64#usize [
-          61#u8, 105#u8, 110#u8, 116#u8, 101#u8, 114#u8, 110#u8, 97#u8, 108#u8,
-          32#u8, 101#u8, 114#u8, 114#u8, 111#u8, 114#u8, 58#u8, 32#u8, 101#u8,
-          110#u8, 116#u8, 101#u8, 114#u8, 101#u8, 100#u8, 32#u8, 117#u8,
-          110#u8, 114#u8, 101#u8, 97#u8, 99#u8, 104#u8, 97#u8, 98#u8, 108#u8,
-          101#u8, 32#u8, 99#u8, 111#u8, 100#u8, 101#u8, 58#u8, 32#u8, 105#u8,
-          110#u8, 118#u8, 97#u8, 108#u8, 105#u8, 100#u8, 32#u8, 73#u8, 110#u8,
-          110#u8, 101#u8, 114#u8, 32#u8, 116#u8, 97#u8, 103#u8, 58#u8, 32#u8,
-          192#u8, 0#u8
-          ]) (Array.make 1#usize [ a ])
-    fail panic
-
+  := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 /-- [spqr::proto::pq_ratchet::pq_ratchet_state::{spqr::proto::pq_ratchet::pq_ratchet_state::Inner}::encoded_len]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 49:41-49:55
     Visibility: public -/
@@ -2668,26 +2515,8 @@ def proto.pq_ratchet.Chunk.Insts.CoreCmpEq : core.cmp.Eq proto.pq_ratchet.Chunk
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::Chunk}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 55:37-55:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.Chunk.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.Chunk := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.Chunk.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.Chunk.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len := proto.pq_ratchet.Chunk.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultChunkInst : core.default.Default
-    proto.pq_ratchet.Chunk) (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf
-    T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-    coredefaultDefaultChunkInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.Chunk.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.Chunk.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.Chunk := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::Chunk}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 55:37-55:53
@@ -2890,26 +2719,8 @@ def proto.pq_ratchet.V1Msg.Insts.CoreCmpEq : core.cmp.Eq proto.pq_ratchet.V1Msg
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::V1Msg}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 62:37-62:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.V1Msg := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len := proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultV1MsgInst : core.default.Default
-    proto.pq_ratchet.V1Msg) (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf
-    T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage
-    coredefaultDefaultV1MsgInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.V1Msg.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.V1Msg := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::V1Msg}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 62:37-62:53
@@ -2948,9 +2759,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure T0)
   Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::closure#1<'_0, T0>}::call_once]:
@@ -2972,9 +2781,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::closure#2<'_0, T0>}::call_once]:
@@ -2996,9 +2803,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::closure#3<'_0, '_1, T0>}::call_once]:
@@ -3020,9 +2825,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::closure#4<'_0, T0>}::call_once]:
@@ -3044,9 +2847,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::merge::closure#5<'_0, T0>}::call_once]:
@@ -3068,9 +2869,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::encode]:
@@ -3115,539 +2914,7 @@ def proto.pq_ratchet.v1_msg.InnerMsg.merge
   (ctx : prost.encoding.DecodeContext) :
   Result ((core.result.Result Unit prost.error.DecodeError) × (Option
     proto.pq_ratchet.v1_msg.InnerMsg) × T0)
-  := do
-  match tag with
-  | 3#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.Hdr value1), buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 4#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.Ek value1), buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 5#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack value1), buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 6#uscalar =>
-    match field with
-    | none =>
-      let owned_value ← core.default.DefaultBool.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type owned_value
-          buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr _ =>
-        let owned_value ← core.default.DefaultBool.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type
-            owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek _ =>
-        let owned_value ← core.default.DefaultBool.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type
-            owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack _ =>
-        let owned_value ← core.default.DefaultBool.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type
-            owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack value =>
-        let (r, value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type value buf
-            ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack value1), buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 _ =>
-        let owned_value ← core.default.DefaultBool.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type
-            owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 _ =>
-        let owned_value ← core.default.DefaultBool.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.bool.merge bytesbufbuf_implBufInst wire_type
-            owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 7#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.Ct1 value1), buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 8#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some im =>
-      match im with
-      | proto.pq_ratchet.v1_msg.InnerMsg.Hdr _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ek _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.EkCt1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1Ack _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct1 _ =>
-        let owned_value ←
-          proto.pq_ratchet.Chunk.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_msg.InnerMsg.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_msg.InnerMsg.Ct2 value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.Chunk.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_msg.InnerMsg.Ct2 value1), buf1)
-  | _ =>
-    let a ← core.fmt.rt.Argument.new_display U32.Insts.CoreFmtDisplay tag
-    let _ ←
-      core.fmt.Arguments.new
-        (Array.make 67#usize [
-          64#u8, 105#u8, 110#u8, 116#u8, 101#u8, 114#u8, 110#u8, 97#u8, 108#u8,
-          32#u8, 101#u8, 114#u8, 114#u8, 111#u8, 114#u8, 58#u8, 32#u8, 101#u8,
-          110#u8, 116#u8, 101#u8, 114#u8, 101#u8, 100#u8, 32#u8, 117#u8,
-          110#u8, 114#u8, 101#u8, 97#u8, 99#u8, 104#u8, 97#u8, 98#u8, 108#u8,
-          101#u8, 32#u8, 99#u8, 111#u8, 100#u8, 101#u8, 58#u8, 32#u8, 105#u8,
-          110#u8, 118#u8, 97#u8, 108#u8, 105#u8, 100#u8, 32#u8, 73#u8, 110#u8,
-          110#u8, 101#u8, 114#u8, 77#u8, 115#u8, 103#u8, 32#u8, 116#u8, 97#u8,
-          103#u8, 58#u8, 32#u8, 192#u8, 0#u8
-          ]) (Array.make 1#usize [ a ])
-    fail panic
-
+  := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 /-- [spqr::proto::pq_ratchet::v1_msg::{spqr::proto::pq_ratchet::v1_msg::InnerMsg}::encoded_len]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 73:41-73:55
     Visibility: public -/
@@ -3700,28 +2967,8 @@ def proto.pq_ratchet.Authenticator.Insts.CoreCmpEq : core.cmp.Eq
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::Authenticator}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 91:37-91:53 -/
 @[reducible]
-impl_def proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.Authenticator := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultAuthenticatorInst :
-    core.default.Default proto.pq_ratchet.Authenticator)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage
-    coredefaultDefaultAuthenticatorInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.Authenticator.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.Authenticator := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::Authenticator}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 91:37-91:53
@@ -3826,28 +3073,8 @@ def proto.pq_ratchet.v1_state.Unchunked.Insts.CoreCmpPartialEqUnchunked :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::Unchunked}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 105:47-105:63 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.Unchunked := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultUnchunkedInst :
-    core.default.Default proto.pq_ratchet.v1_state.Unchunked)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage
-    coredefaultDefaultUnchunkedInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.Unchunked.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.v1_state.Unchunked := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::Unchunked}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 105:47-105:63
@@ -3868,30 +3095,9 @@ def proto.pq_ratchet.v1_state.Unchunked.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::KeysUnsampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 110:45-110:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.unchunked.KeysUnsampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultKeysUnsampledInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.KeysUnsampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage
-    coredefaultDefaultKeysUnsampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.unchunked.KeysUnsampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::KeysUnsampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 110:45-110:61
@@ -3916,30 +3122,9 @@ def proto.pq_ratchet.v1_state.unchunked.KeysUnsampled.Insts.CoreDefaultDefault
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::HeaderSent}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 117:45-117:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.unchunked.HeaderSent := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultHeaderSentInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.HeaderSent)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage
-    coredefaultDefaultHeaderSentInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.unchunked.HeaderSent := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::HeaderSent}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 117:45-117:61
@@ -3965,29 +3150,8 @@ def proto.pq_ratchet.v1_state.unchunked.HeaderSent.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::EkSent}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 128:45-128:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.unchunked.EkSent := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEkSentInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.EkSent)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage
-    coredefaultDefaultEkSentInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.v1_state.unchunked.EkSent := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::EkSent}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 128:45-128:61
@@ -4012,31 +3176,10 @@ def proto.pq_ratchet.v1_state.unchunked.EkSent.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::EkSentCt1Received}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 137:45-137:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEkSentCt1ReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage
-    coredefaultDefaultEkSentCt1ReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.EkSentCt1Received.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::EkSentCt1Received}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 137:45-137:61
@@ -4064,31 +3207,10 @@ def
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::NoHeaderReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 149:45-149:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultNoHeaderReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage
-    coredefaultDefaultNoHeaderReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.NoHeaderReceived.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::NoHeaderReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 149:45-149:61
@@ -4115,31 +3237,10 @@ def
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::HeaderReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 156:45-156:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.unchunked.HeaderReceived
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultHeaderReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.HeaderReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage
-    coredefaultDefaultHeaderReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.HeaderReceived.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::HeaderReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 156:45-156:61
@@ -4229,30 +3330,9 @@ def
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::EkReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 165:45-165:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.unchunked.EkReceived := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEkReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.EkReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage
-    coredefaultDefaultEkReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.unchunked.EkReceived := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::EkReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 165:45-165:61
@@ -4278,29 +3358,8 @@ def proto.pq_ratchet.v1_state.unchunked.EkReceived.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::Ct1Sent}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 176:45-176:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.v1_state.unchunked.Ct1Sent := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt1SentInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.Ct1Sent)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage
-    coredefaultDefaultCt1SentInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.v1_state.unchunked.Ct1Sent := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::Ct1Sent}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 176:45-176:61
@@ -4326,31 +3385,10 @@ def proto.pq_ratchet.v1_state.unchunked.Ct1Sent.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::Ct1SentEkReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 189:45-189:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt1SentEkReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage
-    coredefaultDefaultCt1SentEkReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.Ct1SentEkReceived.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::Ct1SentEkReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 189:45-189:61
@@ -4378,29 +3416,8 @@ def
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::unchunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::unchunked::Ct2Sent}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 202:45-202:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.v1_state.unchunked.Ct2Sent := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt2SentInst :
-    core.default.Default proto.pq_ratchet.v1_state.unchunked.Ct2Sent)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage
-    coredefaultDefaultCt2SentInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.unchunked.Ct2Sent.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.v1_state.unchunked.Ct2Sent := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::unchunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::unchunked::Ct2Sent}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 202:45-202:61
@@ -4469,28 +3486,8 @@ def proto.pq_ratchet.v1_state.Chunked.Insts.CoreCmpPartialEqChunked :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::Chunked}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 210:47-210:63 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.Chunked := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultChunkedInst :
-    core.default.Default proto.pq_ratchet.v1_state.Chunked)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage
-    coredefaultDefaultChunkedInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.Chunked.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.v1_state.Chunked := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::Chunked}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 210:47-210:63
@@ -4519,30 +3516,9 @@ def proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::KeysUnsampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 215:45-215:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.chunked.KeysUnsampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultKeysUnsampledInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.KeysUnsampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-    coredefaultDefaultKeysUnsampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.chunked.KeysUnsampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::KeysUnsampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 215:45-215:61
@@ -4576,30 +3552,9 @@ def proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::KeysSampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 220:45-220:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.chunked.KeysSampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultKeysSampledInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.KeysSampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-    coredefaultDefaultKeysSampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.chunked.KeysSampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::KeysSampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 220:45-220:61
@@ -4636,29 +3591,8 @@ def proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::HeaderSent}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 227:45-227:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.v1_state.chunked.HeaderSent := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultHeaderSentInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.HeaderSent)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-    coredefaultDefaultHeaderSentInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.v1_state.chunked.HeaderSent := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::HeaderSent}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 227:45-227:61
@@ -4698,30 +3632,9 @@ def proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Received}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 236:45-236:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Received := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt1ReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.Ct1Received)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-    coredefaultDefaultCt1ReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Received := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Received}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 236:45-236:61
@@ -4758,31 +3671,10 @@ def proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::EkSentCt1Received}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 243:45-243:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.chunked.EkSentCt1Received
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEkSentCt1ReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.EkSentCt1Received)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-    coredefaultDefaultEkSentCt1ReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::EkSentCt1Received}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 243:45-243:61
@@ -4821,31 +3713,10 @@ def proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::NoHeaderReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 251:45-251:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
   : prost.message.Message proto.pq_ratchet.v1_state.chunked.NoHeaderReceived
-  := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultNoHeaderReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.NoHeaderReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-    coredefaultDefaultNoHeaderReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage.clear
-}
+  := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::NoHeaderReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 251:45-251:61
@@ -4883,30 +3754,9 @@ def proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::HeaderReceived}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 258:45-258:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.chunked.HeaderReceived := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultHeaderReceivedInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.HeaderReceived)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-    coredefaultDefaultHeaderReceivedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.chunked.HeaderReceived := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::HeaderReceived}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 258:45-258:61
@@ -4943,29 +3793,8 @@ def proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Sampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 265:45-265:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Sampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt1SampledInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.Ct1Sampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-    coredefaultDefaultCt1SampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Sampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Sampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 265:45-265:61
@@ -5006,32 +3835,10 @@ def proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreCloneClone
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::EkReceivedCt1Sampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 274:45-274:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
   : prost.message.Message
-  proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEkReceivedCt1SampledInst :
-    core.default.Default
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-    coredefaultDefaultEkReceivedCt1SampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage.clear
-}
+  proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::EkReceivedCt1Sampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 274:45-274:61
@@ -5070,30 +3877,9 @@ def proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Acknowledged}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 281:45-281:61 -/
 @[reducible]
-impl_def
+def
   proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt1AcknowledgedInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-    coredefaultDefaultCt1AcknowledgedInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage.clear
-}
+  prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::Ct1Acknowledged}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 281:45-281:61
@@ -5130,29 +3916,8 @@ def proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreCloneClone :
 /-- Trait implementation: [spqr::proto::pq_ratchet::v1_state::chunked::{impl prost::message::Message for spqr::proto::pq_ratchet::v1_state::chunked::Ct2Sampled}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 288:45-288:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct2Sampled := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultCt2SampledInst :
-    core.default.Default proto.pq_ratchet.v1_state.chunked.Ct2Sampled)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-    coredefaultDefaultCt2SampledInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.v1_state.chunked.Ct2Sampled := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::v1_state::chunked::{impl core::default::Default for spqr::proto::pq_ratchet::v1_state::chunked::Ct2Sampled}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 288:45-288:61
@@ -5196,9 +3961,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce (proto.pq_ratchet.v1_state.InnerState.merge.closure
   T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#1<'_0, T0>}::call_once]:
@@ -5220,9 +3983,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_1 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#2<'_0, T0>}::call_once]:
@@ -5244,9 +4005,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_2 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#3<'_0, T0>}::call_once]:
@@ -5268,9 +4027,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_3 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#4<'_0, T0>}::call_once]:
@@ -5292,9 +4049,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_4 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#5<'_0, T0>}::call_once]:
@@ -5316,9 +4071,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_5 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#6<'_0, T0>}::call_once]:
@@ -5340,9 +4093,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_6 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#7<'_0, T0>}::call_once]:
@@ -5364,9 +4115,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_7 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#8<'_0, T0>}::call_once]:
@@ -5389,9 +4138,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_8 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#9<'_0, T0>}::call_once]:
@@ -5413,9 +4160,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_9 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::{impl core::ops::function::FnOnce<((),), ()> for spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::merge::closure#10<'_0, T0>}::call_once]:
@@ -5437,9 +4182,7 @@ def
   {T0 : Type} (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T0) :
   core.ops.function.FnOnce
   (proto.pq_ratchet.v1_state.InnerState.merge.closure_10 T0) Unit Unit := {
-  call_once :=
-    proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple.call_once
-    bytesbufbuf_implBufInst
+  call_once := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 }
 
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::encode]:
@@ -5506,1718 +4249,7 @@ def proto.pq_ratchet.v1_state.InnerState.merge
   (ctx : prost.encoding.DecodeContext) :
   Result ((core.result.Result Unit prost.error.DecodeError) × (Option
     proto.pq_ratchet.v1_state.InnerState) × T0)
-  := do
-  match tag with
-  | 1#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.KeysUnsampled
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysUnsampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 2#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.KeysSampled value1),
-          buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.KeysSampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_1.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 3#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.HeaderSent value1),
-          buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderSent.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_2.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 4#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.Ct1Received value1),
-          buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_3.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 5#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkSentCt1Received.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_4.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 6#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.NoHeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_5.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 7#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.HeaderReceived
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.HeaderReceived.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_6.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 8#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.Ct1Sampled value1),
-          buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_7.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 9#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.EkReceivedCt1Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_8.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 10#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged
-          value1), buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct1Acknowledged.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_9.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-  | 11#uscalar =>
-    match field with
-    | none =>
-      let owned_value ←
-        proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-      let (r, owned_value1, buf1) ←
-        prost.encoding.message.merge
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-          bytesbufbuf_implBufInst wire_type owned_value buf ctx
-      let (r1, c) ←
-        core.result.Result.map
-          (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-          bytesbufbuf_implBufInst) r (none, owned_value1)
-      let (field1, _) := c
-      ok (r1, field1, buf1)
-    | some is =>
-      match is with
-      | proto.pq_ratchet.v1_state.InnerState.KeysUnsampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.KeysSampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderSent _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkSentCt1Received _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.NoHeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.HeaderReceived _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.EkReceivedCt1Sampled _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct1Acknowledged _ =>
-        let owned_value ←
-          proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.CoreDefaultDefault.default
-        let (r, owned_value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type owned_value buf ctx
-        let (r1, c) ←
-          core.result.Result.map
-            (proto.pq_ratchet.v1_state.InnerState.merge.closure_10.Insts.CoreOpsFunctionFnOnceTupleTupleTuple
-            bytesbufbuf_implBufInst) r (field, owned_value1)
-        let (field1, _) := c
-        ok (r1, field1, buf1)
-      | proto.pq_ratchet.v1_state.InnerState.Ct2Sampled value =>
-        let (r, value1, buf1) ←
-          prost.encoding.message.merge
-            proto.pq_ratchet.v1_state.chunked.Ct2Sampled.Insts.ProstMessageMessage
-            bytesbufbuf_implBufInst wire_type value buf ctx
-        ok (r, some (proto.pq_ratchet.v1_state.InnerState.Ct2Sampled value1),
-          buf1)
-  | _ =>
-    let a ← core.fmt.rt.Argument.new_display U32.Insts.CoreFmtDisplay tag
-    let _ ←
-      core.fmt.Arguments.new
-        (Array.make 69#usize [
-          66#u8, 105#u8, 110#u8, 116#u8, 101#u8, 114#u8, 110#u8, 97#u8, 108#u8,
-          32#u8, 101#u8, 114#u8, 114#u8, 111#u8, 114#u8, 58#u8, 32#u8, 101#u8,
-          110#u8, 116#u8, 101#u8, 114#u8, 101#u8, 100#u8, 32#u8, 117#u8,
-          110#u8, 114#u8, 101#u8, 97#u8, 99#u8, 104#u8, 97#u8, 98#u8, 108#u8,
-          101#u8, 32#u8, 99#u8, 111#u8, 100#u8, 101#u8, 58#u8, 32#u8, 105#u8,
-          110#u8, 118#u8, 97#u8, 108#u8, 105#u8, 100#u8, 32#u8, 73#u8, 110#u8,
-          110#u8, 101#u8, 114#u8, 83#u8, 116#u8, 97#u8, 116#u8, 101#u8, 32#u8,
-          116#u8, 97#u8, 103#u8, 58#u8, 32#u8, 192#u8, 0#u8
-          ]) (Array.make 1#usize [ a ])
-    fail panic
-
+  := sorry -- See https://github.com/AeneasVerif/aeneas/issues/1046
 /-- [spqr::proto::pq_ratchet::v1_state::{spqr::proto::pq_ratchet::v1_state::InnerState}::encoded_len]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 296:41-296:55
     Visibility: public -/
@@ -7279,26 +4311,8 @@ def proto.pq_ratchet.Chain.Insts.CoreMarkerStructuralPartialEq :
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::Chain}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 324:27-324:43 -/
 @[reducible]
-impl_def proto.pq_ratchet.Chain.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.Chain := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.Chain.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.Chain.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len := proto.pq_ratchet.Chain.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.Chain.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultChainInst : core.default.Default
-    proto.pq_ratchet.Chain) (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf
-    T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.Chain.Insts.ProstMessageMessage
-    coredefaultDefaultChainInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.Chain.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.Chain.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.Chain := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::Chain}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 324:27-324:43
@@ -7357,27 +4371,8 @@ def proto.pq_ratchet.Chain.set_direction
 /-- Trait implementation: [spqr::proto::pq_ratchet::chain::{impl prost::message::Message for spqr::proto::pq_ratchet::chain::Epoch}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 341:41-341:57 -/
 @[reducible]
-impl_def proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.chain.Epoch := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEpochInst : core.default.Default
-    proto.pq_ratchet.chain.Epoch) (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage
-    coredefaultDefaultEpochInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.chain.Epoch.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.chain.Epoch := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::chain::{impl core::default::Default for spqr::proto::pq_ratchet::chain::Epoch}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 341:41-341:57
@@ -7400,29 +4395,8 @@ def proto.pq_ratchet.chain.Epoch.Insts.CoreDefaultDefault :
 /-- Trait implementation: [spqr::proto::pq_ratchet::chain::epoch::{impl prost::message::Message for spqr::proto::pq_ratchet::chain::epoch::EpochDirection}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 350:45-350:61 -/
 @[reducible]
-impl_def proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage
-  : prost.message.Message proto.pq_ratchet.chain.epoch.EpochDirection := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultEpochDirectionInst :
-    core.default.Default proto.pq_ratchet.chain.epoch.EpochDirection)
-    (bytesbufbuf_implBufInst : bytes.buf.buf_impl.Buf T1) =>
-    prost.message.Message.decode.default
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage
-    coredefaultDefaultEpochDirectionInst bytesbufbuf_implBufInst
-  clear :=
-    proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.chain.epoch.EpochDirection.Insts.ProstMessageMessage
+  : prost.message.Message proto.pq_ratchet.chain.epoch.EpochDirection := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::chain::epoch::{impl core::default::Default for spqr::proto::pq_ratchet::chain::epoch::EpochDirection}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 350:45-350:61
@@ -7478,27 +4452,8 @@ def proto.pq_ratchet.ChainParams.Insts.CoreCmpEq : core.cmp.Eq
 /-- Trait implementation: [spqr::proto::pq_ratchet::{impl prost::message::Message for spqr::proto::pq_ratchet::ChainParams}]
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 361:43-361:59 -/
 @[reducible]
-impl_def proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage :
-  prost.message.Message proto.pq_ratchet.ChainParams := {
-  encode_raw := fun {T0 : Type} (bytesbufbuf_mutBufMutInst :
-    bytes.buf.buf_mut.BufMut T0) =>
-    proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage.encode_raw
-    bytesbufbuf_mutBufMutInst
-  merge_field := fun {T0 : Type} (bytesbufbuf_implBufInst :
-    bytes.buf.buf_impl.Buf T0) =>
-    proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage.merge_field
-    bytesbufbuf_implBufInst
-  encoded_len :=
-    proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage.encoded_len
-  encode_to_vec := prost.message.Message.encode_to_vec.default
-    proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage
-  decode := fun {T1 : Type} (coredefaultDefaultChainParamsInst :
-    core.default.Default proto.pq_ratchet.ChainParams) (bytesbufbuf_implBufInst
-    : bytes.buf.buf_impl.Buf T1) => prost.message.Message.decode.default
-    proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage
-    coredefaultDefaultChainParamsInst bytesbufbuf_implBufInst
-  clear := proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage.clear
-}
+def proto.pq_ratchet.ChainParams.Insts.ProstMessageMessage :
+  prost.message.Message proto.pq_ratchet.ChainParams := sorry -- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/102
 
 /-- [spqr::proto::pq_ratchet::{impl core::default::Default for spqr::proto::pq_ratchet::ChainParams}::default]:
     Source: 'generated/signal.proto.pq_ratchet.rs', lines 361:43-361:59
@@ -14598,10 +11553,10 @@ def v1.chunked.send_ek.serialize.EkSentCt1Received.from_pb
       let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
       match cf1 with
       | core.ops.control_flow.ControlFlow.Continue val1 =>
-        let r2 ← core.option.Option.ok_or none Error.StateDecode
+        let r2 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
         let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
         match cf2 with
-        | core.ops.control_flow.ControlFlow.Continue val2 =>
+        | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
           let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
           let r4 ←
             core.result.Result.map_err
@@ -14647,7 +11602,7 @@ def v1.chunked.send_ek.serialize.EkSentCt1Received.from_pb
             core.option.Option.ok_or pb.receiving_ct2 Error.StateDecode
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
-          | core.ops.control_flow.ControlFlow.Continue val2 =>
+          | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
             let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
             let r4 ←
               core.result.Result.map_err
@@ -14833,10 +11788,10 @@ def v1.chunked.send_ek.serialize.HeaderSent.from_pb
           let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r4
           match cf3 with
           | core.ops.control_flow.ControlFlow.Continue val3 =>
-            let r5 ← core.option.Option.ok_or none Error.StateDecode
+            let r5 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
             let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r5
             match cf4 with
-            | core.ops.control_flow.ControlFlow.Continue val4 =>
+            | core.ops.control_flow.ControlFlow.Continue (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
               let r6 ← encoding.polynomial.PolyDecoder.from_pb val4
               let r7 ←
                 core.result.Result.map_err
@@ -14900,7 +11855,7 @@ def v1.chunked.send_ek.serialize.HeaderSent.from_pb
                 core.option.Option.ok_or pb.receiving_ct1 Error.StateDecode
               let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r5
               match cf4 with
-              | core.ops.control_flow.ControlFlow.Continue val4 =>
+              | core.ops.control_flow.ControlFlow.Continue (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
                 let r6 ← encoding.polynomial.PolyDecoder.from_pb val4
                 let r7 ←
                   core.result.Result.map_err
@@ -15226,10 +12181,10 @@ def v1.chunked.send_ct.serialize.Ct1Acknowledged.from_pb
       let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
       match cf1 with
       | core.ops.control_flow.ControlFlow.Continue val1 =>
-        let r2 ← core.option.Option.ok_or none Error.StateDecode
+        let r2 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
         let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
         match cf2 with
-        | core.ops.control_flow.ControlFlow.Continue val2 =>
+        | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
           let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
           let r4 ←
             core.result.Result.map_err
@@ -15273,7 +12228,7 @@ def v1.chunked.send_ct.serialize.Ct1Acknowledged.from_pb
           let r2 ← core.option.Option.ok_or pb.receiving_ek Error.StateDecode
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
-          | core.ops.control_flow.ControlFlow.Continue val2 =>
+          | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
             let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
             let r4 ←
               core.result.Result.map_err
@@ -15478,10 +12433,10 @@ def v1.chunked.send_ct.serialize.Ct1Sampled.from_pb
           let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r4
           match cf3 with
           | core.ops.control_flow.ControlFlow.Continue val3 =>
-            let r5 ← core.option.Option.ok_or none Error.StateDecode
+            let r5 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
             let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r5
             match cf4 with
-            | core.ops.control_flow.ControlFlow.Continue val4 =>
+            | core.ops.control_flow.ControlFlow.Continue (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
               let r6 ← encoding.polynomial.PolyDecoder.from_pb val4
               let r7 ←
                 core.result.Result.map_err
@@ -15545,7 +12500,7 @@ def v1.chunked.send_ct.serialize.Ct1Sampled.from_pb
                 core.option.Option.ok_or pb.receiving_ek Error.StateDecode
               let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r5
               match cf4 with
-              | core.ops.control_flow.ControlFlow.Continue val4 =>
+              | core.ops.control_flow.ControlFlow.Continue (val4 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
                 let r6 ← encoding.polynomial.PolyDecoder.from_pb val4
                 let r7 ←
                   core.result.Result.map_err
@@ -15643,10 +12598,10 @@ def v1.chunked.send_ct.serialize.HeaderReceived.from_pb
       let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
       match cf1 with
       | core.ops.control_flow.ControlFlow.Continue val1 =>
-        let r2 ← core.option.Option.ok_or none Error.StateDecode
+        let r2 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
         let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
         match cf2 with
-        | core.ops.control_flow.ControlFlow.Continue val2 =>
+        | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
           let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
           let r4 ←
             core.result.Result.map_err
@@ -15690,7 +12645,7 @@ def v1.chunked.send_ct.serialize.HeaderReceived.from_pb
           let r2 ← core.option.Option.ok_or pb.receiving_ek Error.StateDecode
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
-          | core.ops.control_flow.ControlFlow.Continue val2 =>
+          | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
             let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
             let r4 ←
               core.result.Result.map_err
@@ -15775,10 +12730,10 @@ def v1.chunked.send_ct.serialize.NoHeaderReceived.from_pb
       let cf1 ← core.result.Result.Insts.CoreOpsTry.branch r1
       match cf1 with
       | core.ops.control_flow.ControlFlow.Continue val1 =>
-        let r2 ← core.option.Option.ok_or none Error.StateDecode
+        let r2 ← core.option.Option.ok_or (none : Option _) Error.StateDecode -- See https://github.com/AeneasVerif/aeneas/issues/1018
         let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
         match cf2 with
-        | core.ops.control_flow.ControlFlow.Continue val2 =>
+        | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
           let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
           let r4 ←
             core.result.Result.map_err
@@ -15824,7 +12779,7 @@ def v1.chunked.send_ct.serialize.NoHeaderReceived.from_pb
             core.option.Option.ok_or pb.receiving_hdr Error.StateDecode
           let cf2 ← core.result.Result.Insts.CoreOpsTry.branch r2
           match cf2 with
-          | core.ops.control_flow.ControlFlow.Continue val2 =>
+          | core.ops.control_flow.ControlFlow.Continue (val2 : proto.pq_ratchet.PolynomialDecoder) /- See https://github.com/AeneasVerif/aeneas/issues/1018 -/ =>
             let r3 ← encoding.polynomial.PolyDecoder.from_pb val2
             let r4 ←
               core.result.Result.map_err
@@ -16063,13 +13018,13 @@ def send
                 let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
                 match cf3 with
                 | core.ops.control_flow.ControlFlow.Continue val3 =>
-                  let chain ←
+                  let chain' /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/ ←
                     match val2.key with
                     | none => ok val3
                     | some epoch_secret =>
                       chain.Chain.add_epoch val3 epoch_secret
                   let i3 ← val2.msg.epoch - 1#u64
-                  let (r4, chain1) ← chain.Chain.send_key chain i3
+                  let (r4, chain1) ← chain.Chain.send_key chain' i3 /- #101 rename -/
                   let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
                   match cf4 with
                   | core.ops.control_flow.ControlFlow.Continue val4 =>
@@ -16163,12 +13118,12 @@ def send
             let cf3 ← core.result.Result.Insts.CoreOpsTry.branch r3
             match cf3 with
             | core.ops.control_flow.ControlFlow.Continue val3 =>
-              let chain ←
+              let chain' /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/ ←
                 match val2.key with
                 | none => ok val3
                 | some epoch_secret => chain.Chain.add_epoch val3 epoch_secret
               let i1 ← val2.msg.epoch - 1#u64
-              let (r4, chain1) ← chain.Chain.send_key chain i1
+              let (r4, chain1) ← chain.Chain.send_key chain' i1 /- #101 rename -/
               let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
               match cf4 with
               | core.ops.control_flow.ControlFlow.Continue val4 =>
@@ -17435,8 +14390,8 @@ def recv
       let v ← alloc.slice.Slice.to_vec core.clone.CloneU8 s
       ok (core.result.Result.Ok { state := v, key := none })
     | some v =>
-      let v1 := read_discriminant v
-      let i ← lift (IScalar.hcast .U8 v1)
+      let v1' := read_discriminant v /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/
+      let i ← lift (IScalar.hcast .U8 v1')
       let v2 ← state_version val
       let i1 := read_discriminant v2
       let i2 ← lift (IScalar.hcast .U8 i1)
@@ -17496,7 +14451,7 @@ def recv
                           core.result.Result.Insts.CoreOpsTry.branch r7
                         match cf6 with
                         | core.ops.control_flow.ControlFlow.Continue val6 =>
-                          let chain ←
+                          let chain' /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/ ←
                             match val5.key with
                             | none => ok val6
                             | some epoch_secret =>
@@ -17508,7 +14463,7 @@ def recv
                               let vs ←
                                 v1.chunked.states.serialize.States.into_pb
                                   val5.state
-                              let c1 ← chain.Chain.into_pb chain
+                              let c1 ← chain.Chain.into_pb chain' /- #101 rename -/
                               let v4 ←
                                 prost.message.Message.encode_to_vec.default
                                   proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage
@@ -17535,7 +14490,7 @@ def recv
                                   })
                             else
                               let (r8, chain1) ←
-                                chain.Chain.recv_key chain msg_key_epoch index
+                                chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                               let cf7 ←
                                 core.result.Result.Insts.CoreOpsTry.branch r8
                               match cf7 with
@@ -17570,7 +14525,7 @@ def recv
                                   Recv (core.convert.FromSame Error) residual
                           else
                             let (r8, chain1) ←
-                              chain.Chain.recv_key chain msg_key_epoch index
+                              chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                             let cf7 ←
                               core.result.Result.Insts.CoreOpsTry.branch r8
                             match cf7 with
@@ -17647,7 +14602,7 @@ def recv
                 let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
                 match cf4 with
                 | core.ops.control_flow.ControlFlow.Continue val4 =>
-                  let chain ←
+                  let chain' /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/ ←
                     match val3.key with
                     | none => ok val4
                     | some epoch_secret =>
@@ -17658,7 +14613,7 @@ def recv
                     then
                       let vs ←
                         v1.chunked.states.serialize.States.into_pb val3.state
-                      let c ← chain.Chain.into_pb chain
+                      let c ← chain.Chain.into_pb chain' /- #101 rename -/
                       let v3 ←
                         prost.message.Message.encode_to_vec.default
                           proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage
@@ -17684,7 +14639,7 @@ def recv
                           })
                     else
                       let (r5, chain1) ←
-                        chain.Chain.recv_key chain msg_key_epoch index
+                        chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                       let cf5 ← core.result.Result.Insts.CoreOpsTry.branch r5
                       match cf5 with
                       | core.ops.control_flow.ControlFlow.Continue val5 =>
@@ -17715,7 +14670,7 @@ def recv
                           Recv (core.convert.FromSame Error) residual
                   else
                     let (r5, chain1) ←
-                      chain.Chain.recv_key chain msg_key_epoch index
+                      chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                     let cf5 ← core.result.Result.Insts.CoreOpsTry.branch r5
                     match cf5 with
                     | core.ops.control_flow.ControlFlow.Continue val5 =>
@@ -17781,7 +14736,7 @@ def recv
                 let cf4 ← core.result.Result.Insts.CoreOpsTry.branch r4
                 match cf4 with
                 | core.ops.control_flow.ControlFlow.Continue val4 =>
-                  let chain ←
+                  let chain' /- See https://github.com/Beneficial-AI-Foundation/SparsePostQuantumRatchet-verify/issues/101 -/ ←
                     match val3.key with
                     | none => ok val4
                     | some epoch_secret =>
@@ -17792,7 +14747,7 @@ def recv
                     then
                       let vs ←
                         v1.chunked.states.serialize.States.into_pb val3.state
-                      let c ← chain.Chain.into_pb chain
+                      let c ← chain.Chain.into_pb chain' /- #101 rename -/
                       let v3 ←
                         prost.message.Message.encode_to_vec.default
                           proto.pq_ratchet.PqRatchetState.Insts.ProstMessageMessage
@@ -17818,7 +14773,7 @@ def recv
                           })
                     else
                       let (r5, chain1) ←
-                        chain.Chain.recv_key chain msg_key_epoch index
+                        chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                       let cf5 ← core.result.Result.Insts.CoreOpsTry.branch r5
                       match cf5 with
                       | core.ops.control_flow.ControlFlow.Continue val5 =>
@@ -17849,7 +14804,7 @@ def recv
                           Recv (core.convert.FromSame Error) residual
                   else
                     let (r5, chain1) ←
-                      chain.Chain.recv_key chain msg_key_epoch index
+                      chain.Chain.recv_key chain' msg_key_epoch index /- #101 rename -/
                     let cf5 ← core.result.Result.Insts.CoreOpsTry.branch r5
                     match cf5 with
                     | core.ops.control_flow.ControlFlow.Continue val5 =>

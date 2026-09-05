@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import re
 from pathlib import Path
 
@@ -151,7 +152,7 @@ open Aeneas Aeneas.Std Result ControlFlow Error
 
 
 def main():
-    root = sys.argv[1]
+    root = Path(sys.argv[1])
     for f in FILES:
         apply_patches(PATCHES, root / f)
 
