@@ -16,6 +16,7 @@
       {
         devShells.default = pkgs.mkShell {
           packages = [
+            pkgs.python3
             pkgs.protobuf
             pkgs.elan
             charon
