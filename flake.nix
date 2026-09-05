@@ -1,6 +1,4 @@
 {
-  description = "Aeneas";
-
   inputs = {
     nixpkgs.follows = "aeneas/nixpkgs";
     flake-utils.follows = "aeneas/flake-utils";
